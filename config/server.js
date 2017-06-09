@@ -13,7 +13,6 @@ app.use(expressValidator());
 // definindo as rotas numa tacada só
 consign()
 	.include('app/routes')
-	.then('config/dbconnection.js') // incluir tudo e executa no final, por isso excluir server
 	.then('app/models')
 	.then('app/controllers')
 	.into(app);

@@ -1,6 +1,6 @@
 module.exports.formulario_inclusao_noticia = function(application, request, response){
     response.render('admin/form_add_noticia', {validacao: {}, noticia: {}});
-}
+};
 
 module.exports.noticias_salvar = function(application, req, res){
 		var noticia = req.body;
@@ -17,13 +17,9 @@ module.exports.noticias_salvar = function(application, req, res){
 	   		return;
 	   	}
 
-        var connection = application.config.dbconnection;	
-	    var noticiasModel  = new application.app.models.noticiasDAO(connection);
+	    var noticiasModel  = new application.app.models.noticiasDAO();
 
 	    noticiasModel.salvarNoticia(noticia, function(error, result){
-			// evita post f5 update que insere outros registros
-			// todo problema de post é importante redirect to avoid f5
 			res.redirect("/noticias");
-		});			
-
+		});
 }

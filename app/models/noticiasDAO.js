@@ -1,9 +1,6 @@
-const {MongoClient} = require('mongodb');
+const {MongoClient, ObjectID} = require('mongodb');
 
-function NoticiasDAO(connection)
-{
-    this._connection = connection;
-};
+function NoticiasDAO(){};
 
 NoticiasDAO.prototype.getNoticias = function(callback){
 	MongoClient.connect('mongodb://localhost:27017/PortalNoticias', (err, db) => {
@@ -25,7 +22,10 @@ NoticiasDAO.prototype.getNoticia = function(id, callback){
 		if (err) {
 			return console.log('Unable to connect to MongoDB server');
 		}
-		db.collection('Noticias').find({_id: id}).toArray().then((docs) => {
+      
+        var Id = new ObjectID(id);
+		db.collection('Noticias').find({_id: Id}).toArray().then((docs) => {
+			console.log(docs);
 			callback(undefined, docs);
 		}, (err) => {
 			callback(err, []);
