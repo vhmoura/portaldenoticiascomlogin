@@ -1,4 +1,4 @@
-# portaldenoticias
+# portal de noticias com login/signup usando "passport"
 
 Aplicação simples que representa um portal de noticias em NodeJs e MongoDB.
 
